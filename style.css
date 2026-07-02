@@ -174,22 +174,6 @@ main {
   overflow: visible;
 }
 
-.envelope-body::before,
-.envelope-body::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-}
-
-.envelope-body::before {
-  left: 0;
-  border-width: 0 0 var(--h) calc(var(--w) / 2);
-  border-color: transparent transparent rgba(255,255,255,0.03) transparent;
-}
-
 .envelope-flap {
   position: absolute;
   top: 0;
@@ -341,6 +325,10 @@ main {
   border: 1px solid rgba(244,239,230,0.35);
   position: relative;
   z-index: 3;
+}
+
+.btn.no {
+  white-space: nowrap;
 }
 
 .btn.no.dodging {

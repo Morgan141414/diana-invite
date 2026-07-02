@@ -131,25 +131,38 @@ const noPhrases = [
   'Последний шанс', 'Серьёзно?', 'Не в этот раз', 'Даже не думай',
 ];
 let dodgeCount = 0;
+let dodgeLocked = false;
 
 function dodge() {
+  if (dodgeLocked) return;
+  dodgeLocked = true;
+  setTimeout(() => { dodgeLocked = false; }, 280);
+
   dodgeCount++;
+  noBtn.textContent = noPhrases[Math.min(dodgeCount, noPhrases.length - 1)];
+
+  if (!noBtn.classList.contains('dodging')) {
+    // Reparent to <body>: .card uses backdrop-filter, which (like transform)
+    // creates a new containing block for position:fixed descendants in
+    // Chrome, so a fixed child would be positioned relative to the card
+    // instead of the viewport. Moving it out keeps the math below correct.
+    const startRect = noBtn.getBoundingClientRect();
+    document.body.appendChild(noBtn);
+    noBtn.classList.add('dodging');
+    noBtn.style.left = startRect.left + 'px';
+    noBtn.style.top = startRect.top + 'px';
+    noBtn.offsetHeight; // force layout so the jump above doesn't get transitioned
+  }
+
   const rect = noBtn.getBoundingClientRect();
   const margin = 20;
   const maxX = window.innerWidth - rect.width - margin;
   const maxY = window.innerHeight - rect.height - margin;
 
-  if (!noBtn.classList.contains('dodging')) {
-    noBtn.classList.add('dodging');
-    noBtn.style.width = rect.width + 'px';
-  }
-
   const newX = Math.min(Math.max(margin, Math.random() * maxX), maxX);
   const newY = Math.min(Math.max(margin, Math.random() * maxY), maxY);
   noBtn.style.left = newX + 'px';
   noBtn.style.top = newY + 'px';
-
-  noBtn.textContent = noPhrases[Math.min(dodgeCount, noPhrases.length - 1)];
 
   const scale = Math.min(1 + dodgeCount * 0.06, 1.7);
   yesBtn.style.transform = `scale(${scale})`;
@@ -167,6 +180,7 @@ noBtn.addEventListener('click', (e) => {
 
 // ---------- Yes ----------
 yesBtn.addEventListener('click', () => {
+  noBtn.style.display = 'none';
   showScreen('final');
   launchConfetti();
   launchHearts();
