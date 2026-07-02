@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Диана ✨</title>
+<meta name="description" content="Приглашение для Дианы" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<canvas id="sky"></canvas>
+<div class="fireflies" id="fireflies"></div>
+<div class="vignette"></div>
+
+<main>
+
+  <section id="hero" class="screen active">
+    <p class="eyebrow">для тебя</p>
+    <h1 class="title">Диана</h1>
+    <p class="subtitle">сегодня вечером тебя ждёт кое-что особенное...</p>
+
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Открыть конверт">
+      <div class="envelope-shadow"></div>
+      <div class="envelope-body">
+        <div class="envelope-flap"></div>
+        <div class="envelope-heart">♡</div>
+      </div>
+    </div>
+    <p class="hint">нажми на конверт</p>
+  </section>
+
+  <section id="letter" class="screen">
+    <div class="card">
+      <p class="letter-text">
+        Диана,<br /><br />
+        под этим бесконечным ночным небом,<br />
+        среди тысячи звёзд,<br />
+        мне хочется провести один вечер<br />
+        именно с тобой.<br /><br />
+        У меня есть один вопрос...
+      </p>
+      <button class="next-btn" id="toQuestion">дальше →</button>
+    </div>
+  </section>
+
+  <section id="question" class="screen">
+    <div class="card">
+      <h2 class="q-title">Встретимся сегодня? <span class="pulse-heart">♡</span></h2>
+      <p class="details">
+        <span class="detail-row">🌳 Ботанический сад</span>
+        <span class="detail-row">🕚 23:00</span>
+      </p>
+      <div class="buttons" id="buttons">
+        <button class="btn yes" id="yesBtn">Да!</button>
+        <button class="btn no" id="noBtn">Нет</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="final" class="screen">
+    <div class="card final-card">
+      <h2 class="final-title">Ура! <span class="spark">✨</span></h2>
+      <p class="final-text">
+        Жду тебя сегодня в <strong>23:00</strong><br />
+        в <strong>Ботаническом саду</strong>
+      </p>
+      <p class="small">не опаздывай — звёзды уже заняли места ✨</p>
+    </div>
+  </section>
+
+</main>
+
+<canvas id="confetti"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>
